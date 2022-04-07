@@ -11,7 +11,6 @@ submit.addEventListener('click', handleSubmit);
 
 const savedForm = localStorage.getItem("feedback-form-state");
 const parsedForm = JSON.parse(savedForm);
-
 let objForShow;
 
 function isEmptyEmail() {
@@ -36,6 +35,7 @@ function getForm() {
 }
 
 function handleInput(e) {
+    
     let email = form.elements.email.value;
     let message = form.elements.message.value;
 
@@ -52,10 +52,12 @@ function handleInput(e) {
 function handleSubmit(e) {
     e.preventDefault();
 
-    console.log(objForShow);
+     if(localStorage.getItem("feedback-form-state")){
+    console.log(localStorage.getItem("feedback-form-state"));
+     }
+    
     localStorage.removeItem("feedback-form-state");
     form.reset();
-    
 }
 
 getForm();
