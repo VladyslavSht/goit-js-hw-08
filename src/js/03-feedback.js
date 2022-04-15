@@ -53,11 +53,13 @@ function handleSubmit(e) {
     e.preventDefault();
 
      if(localStorage.getItem("feedback-form-state")){
-    console.log(localStorage.getItem("feedback-form-state"));
-     }
     
+        if((JSON.parse(localStorage.getItem("feedback-form-state")).email !== "" & JSON.parse(localStorage.getItem("feedback-form-state")).message !== "")){
+    console.log(localStorage.getItem("feedback-form-state"));
     localStorage.removeItem("feedback-form-state");
     form.reset();
+     }   
+}
 }
 
 getForm();
