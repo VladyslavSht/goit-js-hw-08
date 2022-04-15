@@ -13,25 +13,19 @@ const savedForm = localStorage.getItem("feedback-form-state");
 const parsedForm = JSON.parse(savedForm);
 let objForShow;
 
-function isEmptyEmail() {
-    if(parsedForm.email === undefined){
-        return input.value = "";   
+function isEmpty() {
+    if(!parsedForm.email || !parsedForm.message){
+        return;
     }
     input.value = parsedForm.email;
-}
-
-function isEmptyMessage() {
-    if(parsedForm.message === undefined) {
-        return textArea.value = "";
-    }
     textArea.value = parsedForm.message;
 }
 
 function getForm() {
-    if(savedForm) {
-    isEmptyEmail();
-    isEmptyMessage();
+    if(!savedForm) {
+    return;
     }
+    isEmpty();
 }
 
 function handleInput(e) {
@@ -51,10 +45,11 @@ function handleInput(e) {
 
 function handleSubmit(e) {
     e.preventDefault();
+    const parsedData = JSON.parse(localStorage.getItem("feedback-form-state"));
 
-     if(localStorage.getItem("feedback-form-state")){
+     if(parsedData){
     
-        if((JSON.parse(localStorage.getItem("feedback-form-state")).email !== "" & JSON.parse(localStorage.getItem("feedback-form-state")).message !== "")){
+        if((parsedData.email !== "" & parsedData.message !== "")){
     console.log(localStorage.getItem("feedback-form-state"));
     localStorage.removeItem("feedback-form-state");
     form.reset();
@@ -63,6 +58,57 @@ function handleSubmit(e) {
 }
 
 getForm();
+
+// function isEmptyEmail() {
+//     if(parsedForm.email === undefined){
+//         return input.value = "";   
+//     }
+//     input.value = parsedForm.email;
+// }
+
+// function isEmptyMessage() {
+//     if(parsedForm.message === undefined) {
+//         return textArea.value = "";
+//     }
+//     textArea.value = parsedForm.message;
+// }
+
+// function getForm() {
+//     if(savedForm) {
+//     isEmptyEmail();
+//     isEmptyMessage();
+//     }
+// }
+
+// function handleInput(e) {
+    
+//     let email = form.elements.email.value;
+//     let message = form.elements.message.value;
+
+//     const formData = {
+//         email,
+//         message
+//     }
+
+//     objForShow = formData;
+
+//     localStorage.setItem("feedback-form-state", JSON.stringify(formData));
+// }
+
+// function handleSubmit(e) {
+//     e.preventDefault();
+
+//      if(localStorage.getItem("feedback-form-state")){
+    
+//         if((JSON.parse(localStorage.getItem("feedback-form-state")).email !== "" & JSON.parse(localStorage.getItem("feedback-form-state")).message !== "")){
+//     console.log(localStorage.getItem("feedback-form-state"));
+//     localStorage.removeItem("feedback-form-state");
+//     form.reset();
+//      }   
+// }
+// }
+
+// getForm();
 
 
 
